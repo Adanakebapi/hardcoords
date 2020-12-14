@@ -22,9 +22,9 @@ class Table:
         if (pos1[0] == pos2[0]) and (pos1[1] == pos2[1]):
             return (lambda x,y: False)
         elif (pos1[0] == pos2[0]):
-            return (lambda x,y: ((pos1[0] < x < pos2[0]) or (pos2[0] < x < pos1[0])) and ((pos1[1] < y < pos2[1]) or (pos2[1] < y < pos1[1])) and (abs((x-centerx)-(y-centery)*(xs/ys)) < weight))
+            return (lambda x,y: ((pos1[0]-weight < x < pos2[0]+weight) or (pos2[0]-weight < x < pos1[0]+weight)) and ((pos1[1]-weight < y < pos2[1]+weight) or (pos2[1]-weight < y < pos1[1]+weight)) and (abs((x-centerx)-(y-centery)*(xs/ys)) < weight))
         else:
-            return (lambda x,y: ((pos1[0] < x < pos2[0]) or (pos2[0] < x < pos1[0])) and ((pos1[1] < y < pos2[1]) or (pos2[1] < y < pos1[1])) and (abs((x-centerx)*(ys/xs)-(y-centery)) < weight)) 
+            return (lambda x,y: ((pos1[0]-weight < x < pos2[0]+weight) or (pos2[0]-weight < x < pos1[0]+weight)) and ((pos1[1]-weight < y < pos2[1]+weight) or (pos2[1]-weight < y < pos1[1]+weight)) and (abs((x-centerx)*(ys/xs)-(y-centery)) < weight)) 
     def main_function(self,x,y):
         return (True in [i(x,y) for i in self.objects])
     def get_data(self):
